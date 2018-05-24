@@ -26,18 +26,18 @@ module FacebookAds
       def deserialize(value, session = nil)
         case value
           when String
-            DateTime.strptime(value, '%FT%T%:z')
+            ::DateTime.strptime(value, '%FT%T%:z')
           else
-            Time.at(value).to_datetime
+            ::Time.at(value).to_datetime
         end
       end
 
       def serialize(value)
         case value
-          when DateTime, Time
+          when ::DateTime, ::Time
             value.to_time.to_i
           when String
-            DateTime.parse(value).to_time.to_i
+            ::DateTime.parse(value).to_time.to_i
           else
             value
         end
