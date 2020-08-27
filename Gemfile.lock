@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    facebookbusiness (0.8.0.0)
+    facebookbusiness (0.8.0.1)
       countries (~> 3.0)
       faraday (~> 1.0)
-      json (~> 2.2)
+      json (~> 2.3)
       money (~> 6.13)
 
 GEM
@@ -81,7 +81,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print (~> 1.8)
   bundler (~> 1.17)
-  byebug (~> 11.0)
+  byebug (~> 11.1)
   countries (~> 3.0)
   dotenv (~> 2.7)
   facebookbusiness!
@@ -90,8 +90,8 @@ DEPENDENCIES
   pry (~> 0.12)
   pry-coolline (~> 0.2)
   rake (~> 13.0)
-  rspec (~> 3.8)
-  rubocop (~> 0.71)
+  rspec (~> 3.9)
+  rubocop (~> 0.89)
 
 BUNDLED WITH
    1.17.2
