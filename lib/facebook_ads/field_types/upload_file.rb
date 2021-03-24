@@ -81,7 +81,7 @@ module FacebookAds
               value = File.new(value)
             end
 
-            ext = File.extname(value.path).gsub(/^./,'')
+            ext = File.extname(value.path).gsub(/^./,'').downcase
             category, content_type = content_type_for(ext)
 
             raise 'This type of file is not supported' unless content_type
