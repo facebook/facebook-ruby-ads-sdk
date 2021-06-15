@@ -56,6 +56,11 @@ module FacebookAds
       self.next_page_cursor = nil
     end
 
+    def summary
+      fetch_next_page if @summary.nil?
+      @summary ||= {}
+    end
+
     private
     def fetch_next_page
       fetch_options = {limit: DEFAULT_PAGE_SIZE}.merge(serialized_options)
@@ -71,6 +76,7 @@ module FacebookAds
 
         self.next_page_cursor = response.dig('paging', 'cursors', 'after')
         self.has_next_page = !(response['data'].length < fetch_options[:limit])
+        @summary = response['summary'] || {}
       end
     end
 
