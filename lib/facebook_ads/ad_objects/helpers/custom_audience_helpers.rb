@@ -50,16 +50,16 @@ module FacebookAds
       MOBILE_ADVERTISER_ID
     }
 
-    def add_user(data, schema, options = {})
-      self.users.create(prepare_params(data, schema, options))
+    def add_user(data, schema)
+      self.users.create(prepare_params(data: data, schema: schema))
     end
 
-    def remove_user(data, schema, options = {})
-      self.users.destroy(prepare_params(data, schema, options))
+    def remove_user(data, schema)
+      self.users.destroy(prepare_params(data: data, schema: schema))
     end
 
-    def prepare_params(data,
-                       schema,
+    def prepare_params(data:,
+                       schema:,
                        app_ids:     nil,
                        page_ids:    nil,
                        pre_hashed:  false,
