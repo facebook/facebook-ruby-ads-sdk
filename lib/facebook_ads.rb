@@ -45,9 +45,9 @@ module FacebookAds
 
   require 'facebook_ads/ruby2patch'
 
+  require 'facebook_ads/session'
   require 'facebook_ads/config'
   require 'facebook_ads/errors'
-  require 'facebook_ads/session'
   require 'facebook_ads/fields'
   require 'facebook_ads/edge'
   require 'facebook_ads/param_set'

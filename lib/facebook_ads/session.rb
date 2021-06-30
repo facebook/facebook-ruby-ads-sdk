@@ -66,7 +66,7 @@ module FacebookAds
         faraday.request  :url_encoded
 
         faraday.response :logger, Utils.logger, bodies: FacebookAds.config.log_api_bodies
-        faraday.adapter  Faraday.default_adapter
+        faraday.adapter  FacebookAds.config.faraday_adapter
       end
     end
 

@@ -16,29 +16,27 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module FacebookAds
-  class Config
-    def self.setting(name, default = nil)
-      attr_writer name
 
-      define_method name do
-        unless instance_variable_defined?("@#{name}")
-          instance_variable_set("@#{name}", default)
-        end
-        instance_variable_get("@#{name}")
-      end
-    end
+RSpec.describe FacebookAds::Config do
+  it 'provides with default config' do
+    expect(subject).to have_attributes(
+     server_host: FacebookAds::DEFAULT_HOST,
+     api_version: FacebookAds::DEFAULT_API_VERSION,
+     access_token: ENV['FB_ACCESS_TOKEN'],
+     app_secret: ENV['FB_APP_SECRET'],
+     crash_logging_enabled: true,
+     log_api_bodies: false,
+     faraday_adapter: Faraday.default_adapter
+    )
+  end
 
-    setting :server_host, FacebookAds::DEFAULT_HOST
-    setting :api_version, FacebookAds::DEFAULT_API_VERSION
-    setting :access_token, ENV['FB_ACCESS_TOKEN']
-    setting :app_secret, ENV['FB_APP_SECRET']
-    setting :crash_logging_enabled, true
-    setting :log_api_bodies, false
-    setting :faraday_adapter, Faraday.default_adapter
+  context 'custom config' do
+    let(:fake_adapter) { double(:fake_adapter) }
 
-    def logger=(logger)
-      Utils.logger = logger
+    it 'saves custom values' do
+      subject.faraday_adapter = fake_adapter
+
+      expect(subject.faraday_adapter).to eq fake_adapter
     end
   end
 end
