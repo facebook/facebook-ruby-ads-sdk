@@ -21,14 +21,21 @@ require 'facebook_ads/field_types/base'
 module FacebookAds
   module FieldTypes
     def register(*type_names)
-      @@registry ||= {}
       type_names.each do |type_name|
-        @@registry[type_name] = self
+        registry[type_name] = self
       end
     end
 
     def lookup(type_name)
-      @@registry && @@registry[type_name]
+      if registry.has_key?(type_name)
+        registry[type_name]
+      elsif type_name.respond_to?(:include?) && type_name.include?('map<')
+        registry['map']
+      end
+    end
+
+    def registry
+      @@registry ||= {}
     end
 
     def for(type_spec)
