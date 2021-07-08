@@ -32,7 +32,7 @@ module FacebookAds
 
     def execute
       return [] if operations.empty?
-      operations.each_slice(50) do |slice|
+      operations.each_slice(50).map do |slice|
         api_response = APIRequest.new(:post, '', session: session, params: batch_args(slice)).execute_now
         self.last_api_response = api_response
         slice.zip(api_response.result).map do |req, res|
